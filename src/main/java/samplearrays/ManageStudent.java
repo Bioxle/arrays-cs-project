@@ -101,6 +101,19 @@ public class ManageStudent {
         return students;
     }
 
+    public static Student getBestStudent(Student[] students) {
+        if (students.length == 0) {
+            return null;
+        }
+        Student s = students[0];
+        for (Student sl : students) {
+            if (sl.getGrade() > s.getGrade()) {
+                s = sl;
+            }
+        }
+        return s;
+    }
+
     // 1) Create an Array of Students + demos for all tasks
     public static void main(String[] args) {
         // Create & initialize array of 5 students
@@ -161,6 +174,29 @@ public class ManageStudent {
         System.out.println("== All Students ==");
         for (Student s : arr) System.out.println(s);
         System.out.println("Total created: " + Student.getNumStudent());
+
+        // 11) 2D Array
+
+        Student[][] studentsperclass = new Student[2][3];
+
+        studentsperclass[0][0] = s1;
+        studentsperclass[0][1] = s2;
+        studentsperclass[0][2] = s3;
+        studentsperclass[1][0] = s4;
+        studentsperclass[1][1] = s5;
+        studentsperclass[1][2] = s6;
+
+        for (int i = 0; i < studentsperclass.length; i++) {
+            System.out.println("Class " + (i + 1) + " students list: ");
+            for (int j = 0; j < studentsperclass[0].length; j++) {
+                System.out.println(studentsperclass[i][j]);
+            }
+        }
+
+        for (int i = 0; i < studentsperclass.length; i++) {
+            System.out.println("Top student in Class " + (i + 1));
+            System.out.println(getBestStudent(studentsperclass[i]));
+        }
 
     }
 }
